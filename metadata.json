@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Aisyaka.Net",
+  "description": "Aplikasi monitoring jaringan FTTH (Fiber-to-the-Home) real-time Aisyaka.Net dengan dashboard wilayah, status perangkat pelanggan, sistem alert gangguan, dan visualisasi lalu lintas data digital dalam style neon box.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

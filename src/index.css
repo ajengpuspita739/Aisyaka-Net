@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", Courier, monospace;
+  --font-orbitron: "Orbitron", "Inter", sans-serif;
+}
+
+/* Force all general text elements to be white, EXCEPT those inside .ont-portal */
+body p:not(.ont-portal *),
+body span:not(.ont-portal *),
+body label:not(.ont-portal *),
+body input:not(.ont-portal *),
+body select:not(.ont-portal *),
+body textarea:not(.ont-portal *),
+body button:not(.ont-portal *),
+body h1:not(.ont-portal *),
+body h2:not(.ont-portal *),
+body h3:not(.ont-portal *),
+body h4:not(.ont-portal *),
+body h5:not(.ont-portal *),
+body h6:not(.ont-portal *),
+body table:not(.ont-portal *),
+body th:not(.ont-portal *),
+body td:not(.ont-portal *),
+body option:not(.ont-portal *) {
+  color: #ffffff !important;
+}
+
+/* Specific overrides for slate, gray, zinc, and neutral text utilities to turn them white */
+[class*="text-slate-"]:not(.ont-portal *),
+[class*="text-gray-"]:not(.ont-portal *),
+[class*="text-zinc-"]:not(.ont-portal *),
+[class*="text-neutral-"]:not(.ont-portal *) {
+  color: #ffffff !important;
+}
+
+/* Keep warning, danger, success, and info colored texts as status colors if they are explicitly colored */
+[class*="text-cyan-"],
+[class*="text-emerald-"],
+[class*="text-red-"],
+[class*="text-amber-"],
+[class*="text-green-"],
+[class*="text-fuchsia-"],
+[class*="text-blue-"] {
+  /* No override here, let status colors show appropriately */
+}
+
+/* Custom Cyberpunk & Neon Glow Classes */
+.neon-glow-cyan {
+  text-shadow: 0 0 5px rgba(6, 182, 212, 0.5), 0 0 10px rgba(6, 182, 212, 0.7);
+}
+
+.neon-glow-green {
+  text-shadow: 0 0 5px rgba(34, 197, 94, 0.5), 0 0 10px rgba(34, 197, 94, 0.7);
+}
+
+.neon-glow-red {
+  text-shadow: 0 0 5px rgba(239, 68, 68, 0.5), 0 0 10px rgba(239, 68, 68, 0.7);
+}
+
+.neon-glow-amber {
+  text-shadow: 0 0 5px rgba(245, 158, 11, 0.5), 0 0 10px rgba(245, 158, 11, 0.7);
+}
+
+.neon-glow-emerald {
+  text-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 15px rgba(16, 185, 129, 0.8), 0 0 25px rgba(16, 185, 129, 0.4);
+}
+
+/* Custom Neon Box Border Styles */
+.neon-box-cyan {
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.15), inset 0 0 8px rgba(6, 182, 212, 0.1);
+  background: rgba(8, 17, 32, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.neon-box-cyan:hover {
+  border-color: rgba(6, 182, 212, 0.8);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.35), inset 0 0 12px rgba(6, 182, 112, 0.15);
+}
+
+.neon-box-emerald {
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2), inset 0 0 8px rgba(16, 185, 129, 0.1);
+  background: rgba(6, 25, 18, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.neon-box-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.8);
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.45), inset 0 0 12px rgba(16, 185, 129, 0.15);
+}
+
+.neon-box-red {
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.15), inset 0 0 8px rgba(239, 68, 68, 0.1);
+  background: rgba(28, 9, 15, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.neon-box-red:hover {
+  border-color: rgba(239, 68, 68, 0.8);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.35), inset 0 0 12px rgba(239, 68, 68, 0.15);
+}
+
+.neon-box-amber {
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.15), inset 0 0 8px rgba(245, 158, 11, 0.1);
+  background: rgba(24, 15, 6, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.neon-box-amber:hover {
+  border-color: rgba(245, 158, 11, 0.8);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.35), inset 0 0 12px rgba(245, 158, 11, 0.15);
+}
+
+.neon-box-fuchsia {
+  border: 1px solid rgba(217, 70, 239, 0.4);
+  box-shadow: 0 0 8px rgba(217, 70, 239, 0.15), inset 0 0 8px rgba(217, 70, 239, 0.10);
+  background: rgba(20, 8, 25, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.neon-box-fuchsia:hover {
+  border-color: rgba(217, 70, 239, 0.8);
+  box-shadow: 0 0 15px rgba(217, 70, 239, 0.35), inset 0 0 12px rgba(217, 70, 239, 0.15);
+}
+
+/* Custom Scanline & Grid Effect for cyber background */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(18, 24, 38, 0.95), rgba(18, 24, 38, 0.95)),
+    linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 30px 30px, 30px 30px;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 40;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.9; }
+}
+
+.animate-dash-fast {
+  animation: dash 1.5s linear infinite;
+}
+
+.animate-dash-medium {
+  animation: dash 3s linear infinite;
+}
+
+.animate-dash-slow {
+  animation: dash 6s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.cyber-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.35), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.35);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.6);
+}
+
