@@ -157,6 +157,7 @@ export default function GponMapsMenu({ customers, regions }: GponMapsProps) {
   const [hasMoved, setHasMoved] = useState<boolean>(false);
 
   const svgRef = useRef<SVGSVGElement | null>(null);
+  const touchStartRef = useRef<{ dist: number; scale: number } | null>(null);
 
   // Focus detail states
   const [selectedOdcId, setSelectedOdcId] = useState<string | null>(null);
@@ -228,6 +229,45 @@ export default function GponMapsMenu({ customers, regions }: GponMapsProps) {
 
   const handleMouseUp = () => {
     setIsDragging(false);
+  };
+
+  // Touch Handlers for Mobile Panning and Pinch-to-Zoom
+  const handleTouchStart = (e: React.TouchEvent<SVGSVGElement>) => {
+    if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      setIsDragging(true);
+      setDragStart({ x: touch.clientX - panX, y: touch.clientY - panY });
+      setHasMoved(false);
+      touchStartRef.current = null;
+    } else if (e.touches.length === 2) {
+      setIsDragging(false);
+      const t1 = e.touches[0];
+      const t2 = e.touches[1];
+      const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+      touchStartRef.current = { dist, scale };
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<SVGSVGElement>) => {
+    if (e.touches.length === 1 && isDragging) {
+      const touch = e.touches[0];
+      setPanX(touch.clientX - dragStart.x);
+      setPanY(touch.clientY - dragStart.y);
+      setHasMoved(true);
+    } else if (e.touches.length === 2 && touchStartRef.current) {
+      const t1 = e.touches[0];
+      const t2 = e.touches[1];
+      const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+      const factor = dist / touchStartRef.current.dist;
+      let newScale = touchStartRef.current.scale * factor;
+      newScale = Math.min(4, Math.max(0.3, newScale));
+      setScale(newScale);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    touchStartRef.current = null;
   };
 
   // Click handler directly mapping back coordinates from zoom/pan viewport
@@ -513,6 +553,10 @@ export default function GponMapsMenu({ customers, regions }: GponMapsProps) {
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onTouchCancel={handleTouchEnd}
               onWheel={handleWheel}
               onClick={handleMapClick}
             >
@@ -1607,3 +1651,4 @@ export default function GponMapsMenu({ customers, regions }: GponMapsProps) {
     </div>
   );
 }
+
